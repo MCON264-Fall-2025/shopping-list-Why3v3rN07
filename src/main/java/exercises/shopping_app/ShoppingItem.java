@@ -29,7 +29,7 @@ public class ShoppingItem implements Comparable<ShoppingItem> {
 
     @Override
     public int compareTo(ShoppingItem other) {
-        int aisleCompare =  this.aisle - other.aisle;
+        int aisleCompare = Integer.compare(this.aisle, other.aisle);
         if (aisleCompare != 0) {
             return aisleCompare;
         }

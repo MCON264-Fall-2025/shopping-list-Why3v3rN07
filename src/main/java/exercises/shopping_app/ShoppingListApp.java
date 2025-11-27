@@ -1,10 +1,12 @@
 package exercises.shopping_app;
 
 import edu.touro.mcon264.apps.collections.ArrayBasedList;
+import edu.touro.mcon264.apps.collections.IterableCollection;
 import edu.touro.mcon264.apps.collections.LinkedBasedList;
 import edu.touro.mcon264.apps.collections.ListInterface;
 
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -39,12 +41,13 @@ public class ShoppingListApp {
                     while (!gotAisle) {
                         try {
                             int aisle = sc.nextInt();
+                            if (aisle < 0) throw new InputMismatchException();
                             sc.nextLine();
                             ShoppingItem newItem = new ShoppingItem(aisle, itemName);
                             insertSorted(shoppingList, newItem);
                             gotAisle = true;
                         } catch (InputMismatchException e) {
-                            System.out.print("Aisle must be an integer, try again: ");
+                            System.out.print("Aisle must be a positive integer, try again: ");
                             sc.nextLine();
                         }
                     }
@@ -75,6 +78,7 @@ public class ShoppingListApp {
                 default:
                     System.out.println("Invalid choice, please try again.");
             }
+            sc.close();
         }
     }
     /**
@@ -95,7 +99,7 @@ public class ShoppingListApp {
      * If the list is empty, returns null.
      */
     public static ShoppingItem shopNext(ListInterface<ShoppingItem> list) {
-        if (list.iterator().hasNext()) return list.remove(0);
-        else return null;
+        if (list.isEmpty()) return null;
+        else return list.remove(0);
     }
 }
