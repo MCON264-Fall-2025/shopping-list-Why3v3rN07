@@ -3,12 +3,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ShoppingItemTest {
+public class ShoppingListItemTest {
 
     @Test
     void compareToOrdersByAisleFirst() {
-        ShoppingItem milkAisle1 = new ShoppingItem("1", "Milk");
-        ShoppingItem milkAisle2 = new ShoppingItem("2", "Milk");
+        ShoppingItem milkAisle1 = new ShoppingItem(1, "Milk");
+        ShoppingItem milkAisle2 = new ShoppingItem(2, "Milk");
 
         assertTrue(milkAisle1.compareTo(milkAisle2) < 0,
                 "Item in aisle 1 should come before item in aisle 2");
@@ -18,9 +18,9 @@ public class ShoppingItemTest {
 
     @Test
     void compareToOrdersByNameWithinSameAisle() {
-        ShoppingItem apples = new ShoppingItem("3", "Apples");
-        ShoppingItem bread = new ShoppingItem("3", "Bread");
-        ShoppingItem cheese = new ShoppingItem("3", "Cheese");
+        ShoppingItem apples = new ShoppingItem(3, "Apples");
+        ShoppingItem bread = new ShoppingItem(3, "Bread");
+        ShoppingItem cheese = new ShoppingItem(3, "Cheese");
 
         assertTrue(apples.compareTo(bread) < 0,
                 "Apples should come before Bread in the same aisle");
@@ -32,8 +32,8 @@ public class ShoppingItemTest {
 
     @Test
     void compareToReturnsZeroForSameAisleAndName() {
-        ShoppingItem item1 = new ShoppingItem("5", "Eggs");
-        ShoppingItem item2 = new ShoppingItem("5", "Eggs");
+        ShoppingItem item1 = new ShoppingItem(5, "Eggs");
+        ShoppingItem item2 = new ShoppingItem(5, "Eggs");
 
         assertEquals(0, item1.compareTo(item2),
                 "Items with same aisle and name should compare as equal");
@@ -41,7 +41,7 @@ public class ShoppingItemTest {
 
     @Test
     void toStringContainsAisleAndName() {
-        ShoppingItem item = new ShoppingItem("7", "Yogurt");
+        ShoppingItem item = new ShoppingItem(7, "Yogurt");
         String s = item.toString();
 
         assertTrue(s.contains("7") || s.toLowerCase().contains("aisle"),
