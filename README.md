@@ -1,0 +1,2 @@
+By using the List ADT as an abstraction and programming to an interface, you can implement your List however you want 
+and as log as your methods return the expected result, your code will work the same. 
